@@ -8,10 +8,4 @@
         Icon="/Assets/avalonia-logo.ico"
         Title="Calculus.App">
 
-    <Design.DataContext>
-        <vm:MainWindowViewModel/>
-    </Design.DataContext>
-
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
 </Window>
