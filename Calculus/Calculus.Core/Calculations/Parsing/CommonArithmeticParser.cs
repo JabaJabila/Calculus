@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Globalization;
+using System.Text;
 using System.Text.RegularExpressions;
 using Calculus.Core.Calculations.Operations;
 using Calculus.Core.Calculations.Operations.StandardOperations;
@@ -33,10 +34,10 @@ public class CommonArithmeticParser : IArithmeticParser
 
     private IArithmeticOperation CreateOperation(string leftPart, char operationChar, string rightPart)
     {
-        if (!double.TryParse(leftPart, out var left))
+        if (!double.TryParse(leftPart, NumberStyles.Float, CultureInfo.InvariantCulture, out var left))
             throw new ExpressionSyntaxException("Left part of expression can't be parsed as number");
         
-        if (!double.TryParse(rightPart, out var right))
+        if (!double.TryParse(rightPart, NumberStyles.Float, CultureInfo.InvariantCulture, out var right))
             throw new ExpressionSyntaxException("Right part of expression can't be parsed as number");
 
         return operationChar switch
