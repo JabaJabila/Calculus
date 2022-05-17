@@ -7,4 +7,9 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="Calculations\Parsing" />
+      <Folder Include="Handlers" />
+    </ItemGroup>
+
 </Project>
