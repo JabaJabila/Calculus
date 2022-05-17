@@ -2,6 +2,5 @@
 
 public interface IArithmeticOperation
 {
-    int DelayMs { get; set; }
     double Calculate();
 }
