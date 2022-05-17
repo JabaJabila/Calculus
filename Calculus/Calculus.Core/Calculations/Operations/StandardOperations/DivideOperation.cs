@@ -25,6 +25,15 @@ public class DivideOperation : BinaryArithmeticOperation
     public override double Calculate()
     {
         Thread.Sleep(DelayMs);
-        return LeftNumber / RightNumber;
+        var result = LeftNumber / RightNumber;
+        
+        if (double.IsInfinity(result) || 
+            double.IsPositiveInfinity(result) || 
+            double.IsNegativeInfinity(result))
+        {
+            throw new DivideByZeroException();
+        }
+
+        return result;
     }
 }

@@ -23,7 +23,7 @@ public class CommonArithmeticParser : IArithmeticParser
     {
         expression = PrepareExpression(expression);
 
-        var operationCharPosition = expression[1..].IndexOfAny(_operationChars);
+        var operationCharPosition = expression[1..].IndexOfAny(_operationChars) + 1;
         var leftPart = expression[..operationCharPosition];
         var rightPart = expression[(operationCharPosition + 1)..];
         var operationChar = expression[operationCharPosition];
