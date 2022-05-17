@@ -1,5 +1,4 @@
-﻿using System.Xml.Xsl;
-using Calculus.Core.Tools;
+﻿using Calculus.Core.Tools;
 
 namespace Calculus.Core.Calculations.Operations.StandardOperations;
 

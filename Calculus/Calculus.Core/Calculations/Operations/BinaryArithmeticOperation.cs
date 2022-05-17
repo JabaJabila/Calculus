@@ -1,10 +1,8 @@
-﻿using Calculus.Core.Tools;
-
-namespace Calculus.Core.Calculations.Operations;
+﻿namespace Calculus.Core.Calculations.Operations;
 
 public abstract class BinaryArithmeticOperation : IArithmeticOperation
 {
-    protected const double MaxDouble = 1e15;
+    public const double MaxDouble = 1e15;
     
     protected BinaryArithmeticOperation(double left, double right)
     {
