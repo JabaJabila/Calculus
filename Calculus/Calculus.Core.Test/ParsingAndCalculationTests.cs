@@ -21,7 +21,7 @@ public class ParsingAndCalculationTests
     [TestCase("-3+-2=", -5.0)]
     [TestCase("-3+(-2)=", -5.0)]
     [TestCase("(-3)+(-2)=", -5.0)]
-    [TestCase("-3-2=", -5.0)]
+    [TestCase("-3--2=", -1.0)]
     [TestCase("-3*4=", -12.0)]
     [TestCase("-3*0.5=", -1.5)]
     [TestCase("-3.0/0.5=", -6.0)]
@@ -33,6 +33,18 @@ public class ParsingAndCalculationTests
     }
     
     [TestCase("3+2")]
+    [TestCase("3+(2=")]
+    [TestCase("3+2)=")]
+    [TestCase("3++(2=")]
+    [TestCase("3..3+2=")]
+    [TestCase("3*+3=")]
+    [TestCase("3++1=")]
+    [TestCase(".1+1=")]
+    [TestCase("+1=")]
+    [TestCase("12-=")]
+    [TestCase("(12)-(3=")]
+    [TestCase("1,2+1=")]
+    [TestCase("1+1+1=")]
     public void TryCalculateBadSyntaxExpression_GetExpressionSyntaxException(string expression)
     {
         Assert.Throws<ExpressionSyntaxException>(() =>
@@ -43,6 +55,12 @@ public class ParsingAndCalculationTests
     }
     
     [TestCase("5/0=")]
+    [TestCase("-5/0=")]
+    [TestCase("0/0=")]
+    [TestCase("1/-0=")]
+    [TestCase("9999999999999999999999999999999*9999999999999999999999999999999999=")]
+    [TestCase("9999999999999999999999999999999*-9999999999999999999999999999999999=")]
+    [TestCase("99999999999999999999/-0.00000000000000000000000000001=")]
     public void TryCalculateBadMathExpression_GetArithmeticException(string expression)
     {
         var operation = _parser.ParseFromString(expression);
