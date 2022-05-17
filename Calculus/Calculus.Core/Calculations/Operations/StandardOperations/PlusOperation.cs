@@ -8,7 +8,7 @@ public class PlusOperation : BinaryArithmeticOperation
     {
     }
 
-    public override double Execute()
+    public override double Calculate()
     {
         Thread.Sleep(DelayMs);
         return LeftNumber + RightNumber;

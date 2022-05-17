@@ -20,7 +20,7 @@ public abstract class BinaryArithmeticOperation : IArithmeticOperation
     
     public int DelayMs { get; set; }
     
-    public virtual double Execute()
+    public virtual double Calculate()
     {
         return LeftNumber;
     }
