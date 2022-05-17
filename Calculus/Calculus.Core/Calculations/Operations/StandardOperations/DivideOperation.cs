@@ -5,7 +5,7 @@ namespace Calculus.Core.Calculations.Operations.StandardOperations;
 public class DivideOperation : BinaryArithmeticOperation
 {
     private static int _delay;
-    
+
     public DivideOperation(double left, double right) : base(left, right)
     {
     }
@@ -29,10 +29,13 @@ public class DivideOperation : BinaryArithmeticOperation
         
         if (double.IsInfinity(result) || 
             double.IsPositiveInfinity(result) || 
-            double.IsNegativeInfinity(result))
+            double.IsNegativeInfinity(result) ||
+            double.IsNaN(result))
         {
-            throw new DivideByZeroException();
+            throw new DivideByZeroException("Attempt to divide by 0");
         }
+
+        CheckResult(result);
 
         return result;
     }

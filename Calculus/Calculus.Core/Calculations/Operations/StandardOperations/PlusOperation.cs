@@ -26,6 +26,8 @@ public class PlusOperation : BinaryArithmeticOperation
     public override double Calculate()
     {
         Thread.Sleep(DelayMs);
-        return LeftNumber + RightNumber;
+        var result = LeftNumber + RightNumber;
+        CheckResult(result);
+        return result;
     }
 }
