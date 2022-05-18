@@ -1,13 +1,12 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
-using Calculus.App.ViewModels;
 
 namespace Calculus.App.Views;
 
-public partial class Calculator : UserControl
+public partial class HintQuestionTip : UserControl
 {
-    public Calculator()
+    public HintQuestionTip()
     {
         InitializeComponent();
     }

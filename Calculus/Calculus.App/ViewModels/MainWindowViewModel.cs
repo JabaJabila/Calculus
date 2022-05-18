@@ -1,11 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using ReactiveUI;
 
 namespace Calculus.App.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        public string Greeting => "Welcome to Avalonia!";
+        private ViewModelBase _calculator;
+        
+        public MainWindowViewModel()
+        {
+            _calculator = new CalculatorViewModel();
+        }
+        
+        public ViewModelBase Calculator
+        {
+            get => _calculator;
+            private set => this.RaiseAndSetIfChanged(ref _calculator, value);
+        }
     }
 }

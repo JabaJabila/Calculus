@@ -1,13 +1,12 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
-using Calculus.App.ViewModels;
 
 namespace Calculus.App.Views;
 
-public partial class Calculator : UserControl
+public partial class OperationsConfiguration : UserControl
 {
-    public Calculator()
+    public OperationsConfiguration()
     {
         InitializeComponent();
     }

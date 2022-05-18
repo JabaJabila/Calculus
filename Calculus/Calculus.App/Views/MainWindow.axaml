@@ -3,9 +3,15 @@
         xmlns:vm="using:Calculus.App.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="300"
+        Width="800"
+        Height="300"
+        CanResize="False"
         x:Class="Calculus.App.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="Calculus.App">
-
+        
+        <Grid RowDefinitions="Auto, Auto, Auto, Auto" ColumnDefinitions="Auto, Auto">
+                <UserControl Height="280" Width="250" Content="{Binding Calculator}" Grid.Row="0" Grid.Column="0"/>
+        </Grid>
 </Window>
