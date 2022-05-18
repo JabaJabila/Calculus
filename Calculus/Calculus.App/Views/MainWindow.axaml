@@ -8,16 +8,16 @@
         Height="310"
         CanResize="False"
         x:Class="Calculus.App.Views.MainWindow"
-        Icon="/Assets/avalonia-logo.ico"
+        Icon="/Assets/calculus-icon.ico"
         Title="Calculus">
         
         <Grid ColumnDefinitions="Auto, Auto, Auto, Auto" RowDefinitions="Auto, Auto">
                 <UserControl Height="250" Width="250" Content="{Binding Calculator}" Grid.Row="0" Grid.Column="0"/>
                 <UserControl Height="300" Width="280" Margin="10, 10, 0, 0" Content="{Binding Configuration}" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"/>
                 
-                <Border Background="Red" BorderBrush="Black" BorderThickness="2" CornerRadius="3"
+                <Border Background="Indigo" BorderBrush="Black" BorderThickness="2" CornerRadius="3"
                         Margin="20, -20, 0, 0" HorizontalAlignment="Left" Height="30" Width="30" Grid.Row="1" Grid.Column="0" ToolTip.Tip="Hint text">
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontStyle="Oblique" Text="?"/>
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="24" FontStyle="Oblique" Text="?"/>
                 </Border>
         </Grid>
 </Window>

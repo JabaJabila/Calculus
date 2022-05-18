@@ -6,7 +6,7 @@
              x:Class="Calculus.App.Views.CalculatorView">
     <Grid ColumnDefinitions="Auto,Auto,Auto,Auto" RowDefinitions="1*,1*,1*,1*,1*,1*,1*"  Margin="5">
         <TextBox Width="200" Height="20" Watermark="Put expression here..." FontSize="12" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"
-                 HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" ToolTip.Tip="Full"/>
+                 HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" ToolTip.Tip="Put expression here..."/>
         <Button Width="50" HorizontalContentAlignment="Center" Content="CE" Grid.Row="1" Grid.Column="0"/>
         <Button Width="50" HorizontalContentAlignment="Center" Content="C" Grid.Row="1" Grid.Column="1"/>
         <Button Width="50" HorizontalContentAlignment="Center" Content="+/-" Grid.Row="1" Grid.Column="2"/>
