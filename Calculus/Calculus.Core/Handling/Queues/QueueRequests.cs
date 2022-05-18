@@ -10,18 +10,22 @@ public class QueueRequests
     private readonly ConcurrentQueue<CalculationRequest?> _queue;
     private readonly IArithmeticParser _parser;
 
-    public QueueRequests(IArithmeticParser parser, ICalculationQueueHandler handler)
+    public QueueRequests(IArithmeticParser parser)
     {
         _parser = parser ?? throw new ArgumentNullException(nameof(parser));
         _queue = new ConcurrentQueue<CalculationRequest?>();
+    }
 
-        ArgumentNullException.ThrowIfNull(handler, nameof(handler));
+    public void StartHandling(QueueResults queueResults)
+    {
+        ArgumentNullException.ThrowIfNull(queueResults, nameof(queueResults));
+        var handler = new BackgroundQueuesHandler(this, queueResults);
         var backgroundHandler = new Thread(handler.HandleRequests)
         {
             IsBackground = true
         };
         
-        backgroundHandler.Start();
+        backgroundHandler.Start();   
     }
 
     public bool IsEmpty => _queue.IsEmpty;
