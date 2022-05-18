@@ -2,7 +2,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="300"
              x:Class="Calculus.App.Views.OperationsConfigurationView">
-    Welcome to Avalonia!
+    <StackPanel Height="300" Width="270" Orientation="Vertical">
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-20, 0, 0, 20" FontSize="16" FontStyle="Oblique" Text="Operation configuration" />
+        <StackPanel Orientation="Horizontal" Margin="0, 0, 0, 10">
+            <TextBlock VerticalAlignment="Center" FontSize="12" FontFamily="Consolas" Text="+ duration (sec):" Margin="0, 0, 30, 0" />
+            <NumericUpDown Value="5" Maximum="60" Minimum="0" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0, 0, 0, 10">
+            <TextBlock VerticalAlignment="Center" FontSize="12" FontFamily="Consolas" Text="- duration (sec):" Margin="0, 0, 30, 0" />
+            <NumericUpDown Value="5" Maximum="60" Minimum="0" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0, 0, 0, 10">
+            <TextBlock VerticalAlignment="Center" FontSize="12" FontFamily="Consolas" Text="* duration (sec):" Margin="0, 0, 30, 0" />
+            <NumericUpDown Value="5" Maximum="60" Minimum="0" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0, 0, 0, 10">
+            <TextBlock VerticalAlignment="Center" FontSize="12" FontFamily="Consolas" Text="/ duration (sec):" Margin="0, 0, 30, 0" />
+            <NumericUpDown Value="5" Maximum="60" Minimum="0" />
+        </StackPanel>
+    </StackPanel>
 </UserControl>
