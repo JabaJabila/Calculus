@@ -23,7 +23,7 @@ public class BackgroundQueuesHandler : ICalculationQueueHandler
 
             try
             {
-                var result = request.Operation.Calculate();
+                var result = request!.Operation.Calculate();
                 _queueResults.Enqueue(new CalculationResult(request.Expression, result));
             }
             catch (Exception e)
