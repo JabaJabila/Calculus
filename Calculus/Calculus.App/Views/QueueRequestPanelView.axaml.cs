@@ -4,9 +4,9 @@ using Avalonia.Markup.Xaml;
 
 namespace Calculus.App.Views;
 
-public partial class QueueRequestPanel : UserControl
+public partial class QueueRequestPanelView : UserControl
 {
-    public QueueRequestPanel()
+    public QueueRequestPanelView()
     {
         InitializeComponent();
     }

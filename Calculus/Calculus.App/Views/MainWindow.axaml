@@ -9,7 +9,7 @@
         CanResize="False"
         x:Class="Calculus.App.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
-        Title="Calculus.App">
+        Title="Calculus">
         
         <Grid RowDefinitions="Auto, Auto, Auto, Auto" ColumnDefinitions="Auto, Auto">
                 <UserControl Height="280" Width="250" Content="{Binding Calculator}" Grid.Row="0" Grid.Column="0"/>

@@ -4,9 +4,9 @@ using Avalonia.Markup.Xaml;
 
 namespace Calculus.App.Views;
 
-public partial class HintQuestionTip : UserControl
+public partial class OperationsConfigurationView : UserControl
 {
-    public HintQuestionTip()
+    public OperationsConfigurationView()
     {
         InitializeComponent();
     }

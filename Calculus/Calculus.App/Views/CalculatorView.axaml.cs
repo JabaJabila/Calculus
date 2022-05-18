@@ -1,12 +1,13 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using Calculus.App.ViewModels;
 
 namespace Calculus.App.Views;
 
-public partial class QueueResultPanel : UserControl
+public partial class CalculatorView : UserControl
 {
-    public QueueResultPanel()
+    public CalculatorView()
     {
         InitializeComponent();
     }
