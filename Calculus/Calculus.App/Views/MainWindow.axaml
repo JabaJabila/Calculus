@@ -12,6 +12,11 @@
         Title="Calculus">
         
         <Grid RowDefinitions="Auto, Auto, Auto, Auto" ColumnDefinitions="Auto, Auto">
-                <UserControl Height="280" Width="250" Content="{Binding Calculator}" Grid.Row="0" Grid.Column="0"/>
+                <UserControl Height="250" Width="250" Content="{Binding Calculator}" Grid.Row="0" Grid.Column="0"/>
+                
+                <Border Background="Red" BorderBrush="Black" BorderThickness="2" CornerRadius="3"
+                        Padding="0" Margin="20, 0" HorizontalAlignment="Left" Height="30" Width="30" Grid.Row="1" Grid.Column="0" ToolTip.Tip="Text">
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontStyle="Oblique" Text="?"/>
+                </Border>
         </Grid>
 </Window>
