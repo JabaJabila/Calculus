@@ -2,5 +2,5 @@
 
 public interface ICalculationQueueHandler
 {
-    
+    void HandleRequests();
 }
