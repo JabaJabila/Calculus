@@ -8,8 +8,8 @@ namespace Calculus.Core.Test;
 [TestFixture]
 public class ParsingAndCalculationTests
 {
-    private IArithmeticParser _parser;
-    
+    private IArithmeticParser _parser = null!;
+
     [SetUp]
     public void Setup()
     {

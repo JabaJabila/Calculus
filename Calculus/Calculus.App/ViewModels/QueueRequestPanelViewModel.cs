@@ -1,8 +1,8 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Calculus.App.Models;
 using Calculus.Core.Calculations.Operations.StandardOperations;
-using Calculus.Core.Calculations.Parsing;
 using Calculus.Core.Handling.Models;
 using Calculus.Core.Handling.Queues;
 
@@ -12,10 +12,13 @@ public class QueueRequestPanelViewModel : ViewModelBase
 {
     private readonly QueueRequests _queueRequests;
     
-    public QueueRequestPanelViewModel()
+    public QueueRequestPanelViewModel(QueueRequests queueRequests, QueueResults queueResults)
     {
-        _queueRequests = new QueueRequests(new CommonArithmeticParser());
-        _queueRequests.StartHandling(new QueueResults());
+        ArgumentNullException.ThrowIfNull(queueResults, nameof(queueResults));
+
+        _queueRequests = queueRequests ?? throw new ArgumentNullException(nameof(queueRequests));
+        _queueRequests.StartHandling(queueResults);
+        
         Items = new ObservableCollection<QueueItem>();
         Items.Add(new QueueItem(new CalculationRequest("1 + 1 = ", new DivideOperation(1, 1))));
         Items.Add(new QueueItem(new CalculationRequest("2 + 2 = ", new DivideOperation(1, 1))));

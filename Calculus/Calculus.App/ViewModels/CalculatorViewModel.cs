@@ -18,9 +18,9 @@ public class CalculatorViewModel : ViewModelBase
     private bool _leftMinus;
     private char _operation;
 
-    public CalculatorViewModel()
+    public CalculatorViewModel(IArithmeticParser parser)
     {
-        _parser = new CommonArithmeticParser();
+        _parser = parser ?? throw new ArgumentNullException(nameof(parser));
         _expression = DefaultExpression;
         _leftPart = DefaultExpression;
         _rightPart = string.Empty;

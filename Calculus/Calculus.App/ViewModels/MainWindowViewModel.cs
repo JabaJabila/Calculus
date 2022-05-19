@@ -1,44 +1,28 @@
-﻿using Calculus.Core.Handling.Queues;
-using ReactiveUI;
+﻿using Calculus.Core.Calculations.Parsing;
+using Calculus.Core.Handling.Queues;
 
 namespace Calculus.App.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        private CalculatorViewModel _calculator;
-        private OperationsConfigurationViewModel _configuration;
-        private QueueRequestPanelViewModel _queueRequest;
-        private QueueResultPanelViewModel _queueResult;
         public MainWindowViewModel()
         {
-            _calculator = new CalculatorViewModel();
-            _configuration = new OperationsConfigurationViewModel();
-            _queueRequest = new QueueRequestPanelViewModel();
-            _queueResult = new QueueResultPanelViewModel();
+            var parser = new CommonArithmeticParser();
+            var queueResults = new QueueResults();
+            var queueRequests = new QueueRequests(parser);
+
+            Calculator = new CalculatorViewModel(parser);
+            Configuration = new OperationsConfigurationViewModel();
+            QueueRequests = new QueueRequestPanelViewModel(queueRequests, queueResults);
+            QueueResults = new QueueResultPanelViewModel(queueResults);
         }
         
-        public CalculatorViewModel Calculator
-        {
-            get => _calculator;
-            private set => this.RaiseAndSetIfChanged(ref _calculator, value);
-        }
-        
-        public OperationsConfigurationViewModel Configuration
-        {
-            get => _configuration;
-            private set => this.RaiseAndSetIfChanged(ref _configuration, value);
-        }
+        public CalculatorViewModel Calculator { get; }
 
-        public QueueRequestPanelViewModel QueueRequests
-        {
-            get => _queueRequest;
-            private set => this.RaiseAndSetIfChanged(ref _queueRequest, value);
-        }
+        public OperationsConfigurationViewModel Configuration { get; }
 
-        public QueueResultPanelViewModel QueueResults
-        {
-            get => _queueResult;
-            private set => this.RaiseAndSetIfChanged(ref _queueResult, value);
-        }
+        public QueueRequestPanelViewModel QueueRequests { get; }
+
+        public QueueResultPanelViewModel QueueResults { get; }
     }
 }
