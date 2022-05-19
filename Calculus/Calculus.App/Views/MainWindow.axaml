@@ -12,7 +12,7 @@
         Title="Calculus">
         
         <Grid ColumnDefinitions="Auto, Auto, Auto, Auto" RowDefinitions="Auto, Auto">
-                <UserControl Height="250" Width="250" Content="{Binding Calculator}" Grid.Row="0" Grid.Column="0"/>
+                <UserControl Margin="15, 0, 0, 0" Height="250" Width="250" Content="{Binding Calculator}" Grid.Row="0" Grid.Column="0"/>
                 <UserControl Height="300" Width="280" Margin="10, 10, 0, 0" Content="{Binding Configuration}" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"/>
                 <UserControl Height="250" Width="200" Margin="10, -40, 0, 0" Content="{Binding QueueRequests}" Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"/>
                 <UserControl Height="250" Width="200" Margin="10, -40, 0, 0" Content="{Binding QueueResults}" Grid.Row="0" Grid.Column="3" Grid.RowSpan="2"/>
