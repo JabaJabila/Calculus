@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using Calculus.Core.Handling.Models;
 using JetBrains.Annotations;
@@ -28,7 +29,7 @@ public class QueueItem : INotifyPropertyChanged
 
         if (result.IsSuccessful)
         {
-            Text = result.Expression + result.Result;
+            Text = result.Expression + result.Result.ToString(CultureInfo.InvariantCulture);
             ColorState = SuccessColor;
             return;
         }
