@@ -16,6 +16,6 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore ./src/Calculus
     - name: Build
-      run: dotnet build ./src/Calculus --no-restore
+      run: dotnet build ./Calculus --no-restore
     - name: Test
-      run: dotnet test ./src/Calculus --no-build --verbosity normal
+      run: dotnet test ./Calculus --no-build --verbosity normal
