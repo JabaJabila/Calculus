@@ -21,4 +21,9 @@ public class QueueResults
         if (result is null) throw new ArgumentNullException(nameof(result));
         _queue.Enqueue(result);
     }
+    
+    public bool TryDequeue(out CalculationResult? result)
+    {
+        return _queue.TryDequeue(out result);
+    }
 }
