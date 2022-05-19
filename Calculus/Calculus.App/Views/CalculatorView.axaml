@@ -2,29 +2,116 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:system="clr-namespace:System;assembly=System.Runtime"
              mc:Ignorable="d" d:DesignWidth="250" d:DesignHeight="280"
              x:Class="Calculus.App.Views.CalculatorView">
     <Grid ColumnDefinitions="Auto,Auto,Auto,Auto" RowDefinitions="1*,1*,1*,1*,1*,1*,1*"  Margin="5">
-        <TextBox Width="200" Height="20" Watermark="Put expression here..." FontSize="12" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"
-                 HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" ToolTip.Tip="Put expression here..."/>
-        <Button Width="50" HorizontalContentAlignment="Center" Content="CE" Grid.Row="1" Grid.Column="0"/>
-        <Button Width="50" HorizontalContentAlignment="Center" Content="C" Grid.Row="1" Grid.Column="1"/>
-        <Button Width="50" HorizontalContentAlignment="Center" Content="+/-" Grid.Row="1" Grid.Column="2"/>
-        <Button Width="50" HorizontalContentAlignment="Center" Content="/" Grid.Row="1" Grid.Column="3"/>
-        <Button Width="50" HorizontalContentAlignment="Center" Content="7" Grid.Row="2" Grid.Column="0"/>
-        <Button Width="50" HorizontalContentAlignment="Center" Content="8" Grid.Row="2" Grid.Column="1"/>
-        <Button Width="50" HorizontalContentAlignment="Center" Content="9" Grid.Row="2" Grid.Column="2"/>
-        <Button Width="50" HorizontalContentAlignment="Center" Content="*" Grid.Row="2" Grid.Column="3"/>
-        <Button Width="50" HorizontalContentAlignment="Center" Content="4" Grid.Row="3" Grid.Column="0"/>
-        <Button Width="50" HorizontalContentAlignment="Center" Content="5" Grid.Row="3" Grid.Column="1"/>
-        <Button Width="50" HorizontalContentAlignment="Center" Content="6" Grid.Row="3" Grid.Column="2"/>
-        <Button Width="50" HorizontalContentAlignment="Center" Content="-" Grid.Row="3" Grid.Column="3"/>
-        <Button Width="50" HorizontalContentAlignment="Center" Content="1" Grid.Row="4" Grid.Column="0"/>
-        <Button Width="50" HorizontalContentAlignment="Center" Content="2" Grid.Row="4" Grid.Column="1"/>
-        <Button Width="50" HorizontalContentAlignment="Center" Content="3" Grid.Row="4" Grid.Column="2"/>
-        <Button Width="50" HorizontalContentAlignment="Center" Content="+" Grid.Row="4" Grid.Column="3"/>
-        <Button Width="100" HorizontalContentAlignment="Center" Content="0" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"/>
-        <Button Width="50" HorizontalContentAlignment="Center" Content="." Grid.Row="5" Grid.Column="2"/>
-        <Button Width="50" HorizontalContentAlignment="Center" Content="=" Grid.Row="5" Grid.Column="3"/>
+        
+        <TextBox Width="200" Height="20" Text="{Binding Expression}" Watermark="Put expression here..." FontSize="12" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"
+                 HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" ToolTip.Tip="Put expression here...">
+            <TextBox.KeyBindings>
+                <KeyBinding Gesture="Enter" Command="{Binding Execute}"/>
+            </TextBox.KeyBindings>
+        </TextBox>
+        
+        <Button Width="50" HorizontalContentAlignment="Center" Content="CE" Command="{Binding ClearAll}" Grid.Row="1" Grid.Column="0"/>
+        <Button Width="50" HorizontalContentAlignment="Center" Content="C" Command="{Binding DeleteOneSymbol}" Grid.Row="1" Grid.Column="1"/>
+        <Button Width="50" HorizontalContentAlignment="Center" Content="+/-" Command="{Binding ChangeMinusPlus}" Grid.Row="1" Grid.Column="2"/>
+        
+        <Button Width="50" HorizontalContentAlignment="Center" Content="/" Command="{Binding OperationInput}" Grid.Row="1" Grid.Column="3">
+            <Button.CommandParameter>
+                <system:Char>/</system:Char>
+            </Button.CommandParameter>
+        </Button>
+        
+        
+        <Button Width="50" HorizontalContentAlignment="Center" Content="7" Command="{Binding NumInput}" Grid.Row="2" Grid.Column="0">
+            <Button.CommandParameter>
+                <system:Char>7</system:Char>
+            </Button.CommandParameter>
+        </Button>
+        
+        <Button Width="50" HorizontalContentAlignment="Center" Content="8" Command="{Binding NumInput}" Grid.Row="2" Grid.Column="1">
+            <Button.CommandParameter>
+                <system:Char>8</system:Char>
+            </Button.CommandParameter>
+        </Button>
+        
+        <Button Width="50" HorizontalContentAlignment="Center" Content="9" Command="{Binding NumInput}" Grid.Row="2" Grid.Column="2">
+            <Button.CommandParameter>
+                <system:Char>9</system:Char>
+            </Button.CommandParameter>
+        </Button>
+        
+        
+        <Button Width="50" HorizontalContentAlignment="Center" Content="*" Command="{Binding OperationInput}" Grid.Row="2" Grid.Column="3">
+            <Button.CommandParameter>
+                <system:Char>*</system:Char>
+            </Button.CommandParameter>
+        </Button>
+        
+        
+        <Button Width="50" HorizontalContentAlignment="Center" Content="4" Command="{Binding NumInput}" Grid.Row="3" Grid.Column="0">
+            <Button.CommandParameter>
+                <system:Char>4</system:Char>
+            </Button.CommandParameter>
+        </Button>
+        
+        <Button Width="50" HorizontalContentAlignment="Center" Content="5" Command="{Binding NumInput}" Grid.Row="3" Grid.Column="1">
+            <Button.CommandParameter>
+                <system:Char>5</system:Char>
+            </Button.CommandParameter>
+        </Button>
+        
+        <Button Width="50" HorizontalContentAlignment="Center" Content="6" Command="{Binding NumInput}" Grid.Row="3" Grid.Column="2">
+            <Button.CommandParameter>
+                <system:Char>6</system:Char>
+            </Button.CommandParameter>
+        </Button>
+        
+        
+        <Button Width="50" HorizontalContentAlignment="Center" Content="-" Command="{Binding OperationInput}" Grid.Row="3" Grid.Column="3">
+            <Button.CommandParameter>
+                <system:Char>-</system:Char>
+            </Button.CommandParameter>
+        </Button>
+        
+        
+        <Button Width="50" HorizontalContentAlignment="Center" Content="1" Command="{Binding NumInput}" Grid.Row="4" Grid.Column="0">
+            <Button.CommandParameter>
+                <system:Char>1</system:Char>
+            </Button.CommandParameter>
+        </Button>
+        
+        <Button Width="50" HorizontalContentAlignment="Center" Content="2" Command="{Binding NumInput}" Grid.Row="4" Grid.Column="1">
+            <Button.CommandParameter>
+                <system:Char>2</system:Char>
+            </Button.CommandParameter>
+        </Button>
+        
+        <Button Width="50" HorizontalContentAlignment="Center" Content="3" Command="{Binding NumInput}" Grid.Row="4" Grid.Column="2">
+            <Button.CommandParameter>
+                <system:Char>3</system:Char>
+            </Button.CommandParameter>
+        </Button>
+        
+        
+        <Button Width="50" HorizontalContentAlignment="Center" Content="+" Command="{Binding OperationInput}" Grid.Row="4" Grid.Column="3">
+            <Button.CommandParameter>
+                <system:Char>+</system:Char>
+            </Button.CommandParameter>
+        </Button>
+        
+        <Button Width="100" HorizontalContentAlignment="Center" Content="0" Command="{Binding NumInput}" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2">
+            <Button.CommandParameter>
+                <system:Char>0</system:Char>
+            </Button.CommandParameter>
+        </Button>
+        
+        <Button Width="50" HorizontalContentAlignment="Center"
+                Content="." Command="{Binding DotInput}" Grid.Row="5" Grid.Column="2"/>
+        
+        <Button Width="50" HorizontalContentAlignment="Center"
+                Content="=" Command="{Binding Execute}" Grid.Row="5" Grid.Column="3"/>
     </Grid>
 </UserControl>
