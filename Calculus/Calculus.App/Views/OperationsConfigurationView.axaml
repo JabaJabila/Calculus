@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="300"
              x:Class="Calculus.App.Views.OperationsConfigurationView">
-    <StackPanel Height="300" Width="270" Orientation="Vertical">
+    <StackPanel Margin="0, 12, 0, 0" Height="300" Width="270" Orientation="Vertical">
         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-20, 0, 0, 20"
                    FontSize="16" FontStyle="Oblique" Text="Operation configuration" />
         

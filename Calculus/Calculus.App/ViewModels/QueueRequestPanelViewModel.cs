@@ -1,7 +1,8 @@
 ﻿using System.Collections.ObjectModel;
+using System.Linq;
+using Calculus.App.Models;
 using Calculus.Core.Calculations.Operations.StandardOperations;
 using Calculus.Core.Calculations.Parsing;
-using Calculus.Core.Handling.Handlers;
 using Calculus.Core.Handling.Models;
 using Calculus.Core.Handling.Queues;
 
@@ -15,27 +16,13 @@ public class QueueRequestPanelViewModel : ViewModelBase
     {
         _queueRequests = new QueueRequests(new CommonArithmeticParser());
         _queueRequests.StartHandling(new QueueResults());
-        Items = new ObservableCollection<CalculationRequest>();
-        Items.Add(new CalculationRequest("1151515.141 + 123123 =", new DivideOperation(1, 1)));
-        Items.Add(new CalculationRequest("1151515.141 + 123123 =", new DivideOperation(1, 1)));
-        Items.Add(new CalculationRequest("1151515.141 + 123123 =", new DivideOperation(1, 1)));
-        Items.Add(new CalculationRequest("115253252352351515.141 + 12335235114414141412 =", new DivideOperation(1, 1)));
-        Items.Add(new CalculationRequest("1151515.141 + 123123 =", new DivideOperation(1, 1)));
-        Items.Add(new CalculationRequest("1151515.141 + 123123 =", new DivideOperation(1, 1)));
-        Items.Add(new CalculationRequest("115 + 12 =", new DivideOperation(1, 1)));
-        Items.Add(new CalculationRequest("115 + 12 =", new DivideOperation(1, 1)));
-        Items.Add(new CalculationRequest("115 + 12 =", new DivideOperation(1, 1)));
-        Items.Add(new CalculationRequest("115 + 12 =", new DivideOperation(1, 1)));
-        Items.Add(new CalculationRequest("115 + 12 =", new DivideOperation(1, 1)));
-        Items.Add(new CalculationRequest("115 + 12 =", new DivideOperation(1, 1)));
-        Items.Add(new CalculationRequest("116 + 12 =", new DivideOperation(1, 1)));
-        Items.Add(new CalculationRequest("115 + 12 =", new DivideOperation(1, 1)));
-        Items.Add(new CalculationRequest("115 + 12 =", new DivideOperation(1, 1)));
-        Items.Add(new CalculationRequest("115 + 12 =", new DivideOperation(1, 1)));
+        Items = new ObservableCollection<QueueItem>();
+        Items.Add(new QueueItem(new CalculationRequest("1 + 1 = ", new DivideOperation(1, 1))));
+        Items.Add(new QueueItem(new CalculationRequest("2 + 2 = ", new DivideOperation(1, 1))));
+        Items.Add(new QueueItem(new CalculationRequest("3 + 3 = ", new DivideOperation(1, 1))));
+
+        Items.First().SetAwaiting();
     }
 
-    public ObservableCollection<CalculationRequest> Items
-    {
-        get;
-    }
+    public ObservableCollection<QueueItem> Items { get; }
 }

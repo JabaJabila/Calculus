@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using Calculus.App.Models;
 using Calculus.Core.Calculations.Operations.StandardOperations;
 using Calculus.Core.Handling.Models;
 using Calculus.Core.Handling.Queues;
@@ -12,15 +14,11 @@ public class QueueResultPanelViewModel : ViewModelBase
     public QueueResultPanelViewModel()
     {
         _queueResults = new QueueResults();
-        Items = new ObservableCollection<CalculationResult>();
-        Items.Add(new CalculationResult("12314124124", 12312));
-        Items.Add(new CalculationResult("228", 12312));
-        Items.Add(new CalculationResult("ошибка нахуй", 12312));
+        Items = new ObservableCollection<QueueItem>();
+        Items.Add(new QueueItem(new CalculationResult("228", 12312)));
+        Items.Add(new QueueItem(new CalculationResult("228", new Exception("error"))));
     }
 
-    public ObservableCollection<CalculationResult> Items
-    {
-        get;
-    }
+    public ObservableCollection<QueueItem> Items { get; }
     
 }
