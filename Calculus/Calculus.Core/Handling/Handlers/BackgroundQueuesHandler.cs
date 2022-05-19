@@ -16,19 +16,22 @@ public class BackgroundQueuesHandler : ICalculationQueueHandler
 
     public void HandleRequests()
     {
-        while (!_queueRequests.IsEmpty)
+        while (true)
         {
-            if (!_queueRequests.TryDequeue(out var request))
-                continue;
+            while (!_queueRequests.IsEmpty)
+            {
+                if (!_queueRequests.TryDequeue(out var request))
+                    continue;
 
-            try
-            {
-                var result = request!.Operation.Calculate();
-                _queueResults.Enqueue(new CalculationResult(request.Expression, result));
-            }
-            catch (Exception e)
-            {
-                _queueResults.Enqueue(new CalculationResult(request!.Expression, e));   
+                try
+                {
+                    var result = request!.Operation.Calculate();
+                    _queueResults.Enqueue(new CalculationResult(request.Expression, result));
+                }
+                catch (Exception e)
+                {
+                    _queueResults.Enqueue(new CalculationResult(request!.Expression, e));
+                }
             }
         }
     }

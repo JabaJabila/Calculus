@@ -9,6 +9,14 @@ public class QueueRequests
 {
     private readonly ConcurrentQueue<CalculationRequest?> _queue;
     private readonly IArithmeticParser _parser;
+    private readonly object _locker = new object();
+
+    public delegate void ElementEnqueueHandler(CalculationRequest calculationRequest);
+    public event ElementEnqueueHandler? NotifyElementEnqueued;
+    public delegate void ElementDequeueHandler(CalculationRequest? calculationRequest);
+    public event ElementDequeueHandler? NotifyElementDequeued;
+
+    public bool IsEmpty => _queue.IsEmpty;
 
     public QueueRequests(IArithmeticParser parser)
     {
@@ -28,17 +36,26 @@ public class QueueRequests
         backgroundHandler.Start();   
     }
 
-    public bool IsEmpty => _queue.IsEmpty;
-    public IReadOnlyCollection<CalculationRequest?> Requests => _queue;
-
     public void Enqueue(string expression)
     {
-        if (expression is null) throw new ArgumentNullException(nameof(expression));
-        _queue.Enqueue(new CalculationRequest(expression, _parser.ParseFromString(expression)));
+        lock (_locker)
+        {
+            if (expression is null) throw new ArgumentNullException(nameof(expression));
+            
+            var item = new CalculationRequest(expression, _parser.ParseFromString(expression));
+            _queue.Enqueue(item);
+            NotifyElementEnqueued?.Invoke(item);
+        }
     }
 
     public bool TryDequeue(out CalculationRequest? request)
     {
-        return _queue.TryDequeue(out request);
+        lock (_locker)
+        {
+            if (!_queue.TryDequeue(out request)) return false;
+            
+            NotifyElementDequeued?.Invoke(request);
+            return true;
+        }
     }
 }

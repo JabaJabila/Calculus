@@ -22,6 +22,6 @@ public abstract class BinaryArithmeticOperation : IArithmeticOperation
     protected void CheckResult(double result)
     {
         if (result is > MaxDouble or < -MaxDouble)
-            throw new OverflowException("Absolute values are too large");
+            throw new OverflowException("Absolute value too large");
     }
 }

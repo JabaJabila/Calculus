@@ -5,9 +5,9 @@ namespace Calculus.App.ViewModels;
 
 public class OperationsConfigurationViewModel : ViewModelBase
 {
-    private const int DefaultDelay = 5;
+    private const int DefaultDelay = 0;
     private const int SecToMsConst = 1000;
-    private const int MaximusSecDelay = 60;
+    private const int MaximumSecDelay = 60;
 
     private int _plusDelay;
     private int _minusDelay;
@@ -16,7 +16,10 @@ public class OperationsConfigurationViewModel : ViewModelBase
     
     public OperationsConfigurationViewModel()
     {
-        PlusDelaySec = MinusDelaySec = MultiplyDelaySec = DivideDelaySec = DefaultDelay;
+        PlusDelaySec = DefaultDelay;
+        MinusDelaySec = DefaultDelay;
+        MultiplyDelaySec = DefaultDelay;
+        DivideDelaySec = DefaultDelay;
     }
     
     public int PlusDelaySec
@@ -24,7 +27,7 @@ public class OperationsConfigurationViewModel : ViewModelBase
         get => _plusDelay;
         set
         {
-            PlusOperation.DelayMs = value is >= 0 and <= MaximusSecDelay ?
+            PlusOperation.DelayMs = value is >= 0 and <= MaximumSecDelay ?
                 _plusDelay * SecToMsConst : DefaultDelay * SecToMsConst;
             
             this.RaiseAndSetIfChanged(ref _plusDelay, value);
@@ -36,7 +39,7 @@ public class OperationsConfigurationViewModel : ViewModelBase
         get => _minusDelay;
         set
         {
-            MinusOperation.DelayMs = value is >= 0 and <= MaximusSecDelay ?
+            MinusOperation.DelayMs = value is >= 0 and <= MaximumSecDelay ?
                 _minusDelay * SecToMsConst : DefaultDelay * SecToMsConst;
             
             this.RaiseAndSetIfChanged(ref _minusDelay, value);
@@ -49,7 +52,7 @@ public class OperationsConfigurationViewModel : ViewModelBase
         get => _multiplyDelay;
         set
         {
-            MultiplyOperation.DelayMs = value is >= 0 and <= MaximusSecDelay ?
+            MultiplyOperation.DelayMs = value is >= 0 and <= MaximumSecDelay ?
                 _multiplyDelay * SecToMsConst : DefaultDelay * SecToMsConst;
             
             this.RaiseAndSetIfChanged(ref _multiplyDelay, value);
@@ -61,7 +64,7 @@ public class OperationsConfigurationViewModel : ViewModelBase
         get => _divideDelay;
         set
         {
-            DivideOperation.DelayMs = value is >= 0 and <= MaximusSecDelay ?
+            DivideOperation.DelayMs = value is >= 0 and <= MaximumSecDelay ?
                 _divideDelay * SecToMsConst : DefaultDelay * SecToMsConst;
             
             this.RaiseAndSetIfChanged(ref _divideDelay, value);

@@ -8,7 +8,7 @@
     <Border Padding="5" BorderBrush="Indigo" BorderThickness="2" CornerRadius="6">
         <DockPanel ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible">
             <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15, 0, 0, 20"
-                   FontSize="16" FontStyle="Oblique" Text="Requests in queue: N" />
+                   FontSize="16" FontStyle="Oblique" Text="{Binding Heading}" />
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                 <ItemsControl Items="{Binding Items}">
                     <ItemsControl.ItemTemplate>

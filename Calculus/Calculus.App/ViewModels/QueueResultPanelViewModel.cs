@@ -3,21 +3,39 @@ using System.Collections.ObjectModel;
 using Calculus.App.Models;
 using Calculus.Core.Handling.Models;
 using Calculus.Core.Handling.Queues;
+using ReactiveUI;
 
 namespace Calculus.App.ViewModels;
 
 public class QueueResultPanelViewModel : ViewModelBase
 {
-    private readonly QueueResults _queueResults;
+    private string _heading = null!;
     
     public QueueResultPanelViewModel(QueueResults queueResults)
     {
-        _queueResults = queueResults ?? throw new ArgumentNullException(nameof(queueResults));
+        ArgumentNullException.ThrowIfNull(queueResults, nameof(queueResults));
+        
         Items = new ObservableCollection<QueueItem>();
-        Items.Add(new QueueItem(new CalculationResult("228", 12312)));
-        Items.Add(new QueueItem(new CalculationResult("228", new Exception("error"))));
+        queueResults.NotifyElementEnqueued += AddQueueItem;
+        UpdateHeading();
     }
 
     public ObservableCollection<QueueItem> Items { get; }
     
+    public string Heading
+    {
+        get => _heading;
+        set => this.RaiseAndSetIfChanged(ref _heading, value);
+    }
+
+    private void AddQueueItem(CalculationResult calculationResult)
+    {
+        Items.Insert(0, new QueueItem(calculationResult));
+        UpdateHeading();
+    }
+    
+    private void UpdateHeading()
+    {
+        Heading = $"Results in queue: {Items.Count}";
+    }
 }

@@ -1,9 +1,12 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using Calculus.Core.Handling.Models;
+using JetBrains.Annotations;
 
 namespace Calculus.App.Models;
 
-public class QueueItem
+public class QueueItem : INotifyPropertyChanged
 {
     private const string DefaultColor = "GhostWhite";
     private const string AwaitingColor = "Goldenrod";
@@ -15,11 +18,13 @@ public class QueueItem
         ArgumentNullException.ThrowIfNull(request, nameof(request));
         Text = request.Expression;
         ColorState = DefaultColor;
+        Awaiting = false;
     }
     
     public QueueItem(CalculationResult result)
     {
         ArgumentNullException.ThrowIfNull(result, nameof(result));
+        Awaiting = false;
 
         if (result.IsSuccessful)
         {
@@ -35,8 +40,18 @@ public class QueueItem
     public void SetAwaiting()
     {
         ColorState = AwaitingColor;
+        Awaiting = true;
+        OnPropertyChanged(nameof(ColorState));
     }
 
+    public bool Awaiting { get; private set; }
     public string Text { get; private set; }
     public string ColorState { get; private set; }
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    [NotifyPropertyChangedInvocator]
+    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
 }

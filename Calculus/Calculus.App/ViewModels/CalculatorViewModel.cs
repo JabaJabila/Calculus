@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text;
-using Calculus.Core.Calculations.Parsing;
+using Calculus.Core.Handling.Queues;
 using Calculus.Core.Tools;
 using MessageBox.Avalonia.Enums;
 using ReactiveUI;
@@ -10,7 +10,7 @@ namespace Calculus.App.ViewModels;
 public class CalculatorViewModel : ViewModelBase
 {
     private const string DefaultExpression = "0";
-    private readonly IArithmeticParser _parser;
+    private readonly QueueRequests _queueRequests;
     private string _expression;
     private string _leftPart;
     private string _rightPart;
@@ -18,9 +18,9 @@ public class CalculatorViewModel : ViewModelBase
     private bool _leftMinus;
     private char _operation;
 
-    public CalculatorViewModel(IArithmeticParser parser)
+    public CalculatorViewModel(QueueRequests queueRequests)
     {
-        _parser = parser ?? throw new ArgumentNullException(nameof(parser));
+        _queueRequests = queueRequests ?? throw new ArgumentNullException(nameof(queueRequests));
         _expression = DefaultExpression;
         _leftPart = DefaultExpression;
         _rightPart = string.Empty;
@@ -119,9 +119,7 @@ public class CalculatorViewModel : ViewModelBase
 
         try
         {
-            var operation = _parser.ParseFromString(requested);
-
-            // TODO
+            _queueRequests.Enqueue(requested);
 
             ClearAll();
         }

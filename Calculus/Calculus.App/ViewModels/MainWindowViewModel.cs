@@ -11,7 +11,7 @@ namespace Calculus.App.ViewModels
             var queueResults = new QueueResults();
             var queueRequests = new QueueRequests(parser);
 
-            Calculator = new CalculatorViewModel(parser);
+            Calculator = new CalculatorViewModel(queueRequests);
             Configuration = new OperationsConfigurationViewModel();
             QueueRequests = new QueueRequestPanelViewModel(queueRequests, queueResults);
             QueueResults = new QueueResultPanelViewModel(queueResults);
