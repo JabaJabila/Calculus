@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using Calculus.Core.Calculations.Parsing;
+using Calculus.Core.Tools;
 using MessageBox.Avalonia.Enums;
 using ReactiveUI;
 
@@ -119,15 +120,21 @@ public class CalculatorViewModel : ViewModelBase
         try
         {
             var operation = _parser.ParseFromString(requested);
-            
+
             // TODO
-            
+
             ClearAll();
+        }
+        catch (ExpressionSyntaxException e)
+        {
+            var messageBoxStandardWindow = MessageBox.Avalonia.MessageBoxManager
+                .GetMessageBoxStandardWindow("Error", $"Syntax error: {e.Message}", ButtonEnum.Ok, Icon.Error);
+            messageBoxStandardWindow.Show();
         }
         catch (Exception)
         {
             var messageBoxStandardWindow = MessageBox.Avalonia.MessageBoxManager
-                .GetMessageBoxStandardWindow("Error", "Wrong syntax", ButtonEnum.Ok, Icon.Error);
+                .GetMessageBoxStandardWindow("Error", "Unknown error!", ButtonEnum.Ok, Icon.Error);
             messageBoxStandardWindow.Show();
         }
     }
