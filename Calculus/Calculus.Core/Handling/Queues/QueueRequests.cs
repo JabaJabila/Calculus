@@ -10,6 +10,7 @@ public class QueueRequests
     private readonly ConcurrentQueue<CalculationRequest?> _queue;
     private readonly IArithmeticParser _parser;
     private readonly object _locker = new object();
+    private bool _isHandled;
 
     public delegate void ElementEnqueueHandler(CalculationRequest calculationRequest);
     public event ElementEnqueueHandler? NotifyElementEnqueued;
@@ -22,10 +23,12 @@ public class QueueRequests
     {
         _parser = parser ?? throw new ArgumentNullException(nameof(parser));
         _queue = new ConcurrentQueue<CalculationRequest?>();
+        _isHandled = false;
     }
 
     public void StartHandling(QueueResults queueResults)
     {
+        if (_isHandled) return;
         ArgumentNullException.ThrowIfNull(queueResults, nameof(queueResults));
         var handler = new BackgroundQueuesHandler(this, queueResults);
         var backgroundHandler = new Thread(handler.HandleRequests)
@@ -33,15 +36,16 @@ public class QueueRequests
             IsBackground = true
         };
         
-        backgroundHandler.Start();   
+        backgroundHandler.Start();
+        _isHandled = true;
     }
 
     public void Enqueue(string expression)
     {
+        if (expression is null) throw new ArgumentNullException(nameof(expression));
+        
         lock (_locker)
         {
-            if (expression is null) throw new ArgumentNullException(nameof(expression));
-            
             var item = new CalculationRequest(expression, _parser.ParseFromString(expression));
             _queue.Enqueue(item);
             NotifyElementEnqueued?.Invoke(item);

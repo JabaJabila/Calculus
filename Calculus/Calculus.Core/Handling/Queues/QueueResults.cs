@@ -20,9 +20,10 @@ public class QueueResults
 
     public void Enqueue(CalculationResult result)
     {
+        if (result is null) throw new ArgumentNullException(nameof(result));
+        
         lock (_locker)
         {
-            if (result is null) throw new ArgumentNullException(nameof(result));
             _queue.Enqueue(result);
             
             NotifyElementEnqueued?.Invoke(result);

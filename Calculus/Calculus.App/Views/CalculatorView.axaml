@@ -14,7 +14,7 @@
             </TextBox.KeyBindings>
         </TextBox>
         
-        <Button Width="50" HorizontalContentAlignment="Center" Content="CE" Command="{Binding ClearAll}" Grid.Row="1" Grid.Column="0"/>
+        <Button Width="50" HorizontalContentAlignment="Center" Content="AC" Command="{Binding ClearAll}" Grid.Row="1" Grid.Column="0"/>
         <Button Width="50" HorizontalContentAlignment="Center" Content="C" Command="{Binding DeleteOneSymbol}" Grid.Row="1" Grid.Column="1"/>
         <Button Width="50" HorizontalContentAlignment="Center" Content="+/-" Command="{Binding ChangeMinusPlus}" Grid.Row="1" Grid.Column="2"/>
         
