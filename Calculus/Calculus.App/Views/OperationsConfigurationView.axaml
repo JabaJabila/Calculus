@@ -5,22 +5,27 @@
              mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="300"
              x:Class="Calculus.App.Views.OperationsConfigurationView">
     <StackPanel Height="300" Width="270" Orientation="Vertical">
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-20, 0, 0, 20" FontSize="16" FontStyle="Oblique" Text="Operation configuration" />
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-20, 0, 0, 20"
+                   FontSize="16" FontStyle="Oblique" Text="Operation configuration" />
+        
         <StackPanel Orientation="Horizontal" Margin="0, 0, 0, 10">
             <TextBlock VerticalAlignment="Center" FontSize="12" FontFamily="Consolas" Text="+ duration (sec):" Margin="0, 0, 30, 0" />
-            <NumericUpDown Value="5" Maximum="60" Minimum="0" />
+            <NumericUpDown Value="{Binding PlusDelaySec}" Maximum="60" Minimum="0" />
         </StackPanel>
+        
         <StackPanel Orientation="Horizontal" Margin="0, 0, 0, 10">
             <TextBlock VerticalAlignment="Center" FontSize="12" FontFamily="Consolas" Text="- duration (sec):" Margin="0, 0, 30, 0" />
-            <NumericUpDown Value="5" Maximum="60" Minimum="0" />
+            <NumericUpDown Value="{Binding MinusDelaySec}" Maximum="60" Minimum="0" />
         </StackPanel>
+        
         <StackPanel Orientation="Horizontal" Margin="0, 0, 0, 10">
             <TextBlock VerticalAlignment="Center" FontSize="12" FontFamily="Consolas" Text="* duration (sec):" Margin="0, 0, 30, 0" />
-            <NumericUpDown Value="5" Maximum="60" Minimum="0" />
+            <NumericUpDown Value="{Binding MultiplyDelaySec}" Maximum="60" Minimum="0" />
         </StackPanel>
+        
         <StackPanel Orientation="Horizontal" Margin="0, 0, 0, 10">
             <TextBlock VerticalAlignment="Center" FontSize="12" FontFamily="Consolas" Text="/ duration (sec):" Margin="0, 0, 30, 0" />
-            <NumericUpDown Value="5" Maximum="60" Minimum="0" />
+            <NumericUpDown Value="{Binding DivideDelaySec}" Maximum="60" Minimum="0" />
         </StackPanel>
     </StackPanel>
 </UserControl>
